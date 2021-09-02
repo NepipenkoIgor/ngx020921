@@ -1,27 +1,54 @@
-# ProjectNgxClassworkStarter
+# Angular Course Class Work Starter
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.4.
+[Angular CLI](https://github.com/angular/angular-cli) version 12.2.4
 
-## Development server
+## Getting Started
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+After your git clone this repository run:
 
-## Code scaffolding
+`npm ci --legacy-peer-deps`
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+This will install all of the node_modules and not mess with the package-lock.json file.
 
-## Build
+**DO NOT EVER RUN `npm install` ON THIS PROJECT**
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Local Development
+Run:
 
-## Running unit tests
+`npm start`
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+To start the app and begin development work. The app will launch at http://localhost:4200
 
-## Running end-to-end tests
+## Linting project
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Run:
 
-## Further help
+`npm run lint`
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+If you have errors please fix. You could try autofix with `npm run lint:fix`
+
+## This project use git hooks
+
+Husky improves your commits and more 🐶 woof!
+
+More information you find on - https://typicode.github.io/husky
+
+## Commitlint
+
+Commitlint is used to have a common way of writing commit messages. `Conventional Commits` extension could help with that.
+
+Basic structure of commit message: `type(scope): title`
+
+`type` can be: [build, chore, ci, docs, feat, fix, perf, refactor, revert, style, test].
+
+`scope` is a task number from jira - like AL-9999.
+
+If you use Mac OS please check that you have right access to excute hooks. If need please change
+
+```
+chmod a+x .husky/pre-commit
+```
+
+```
+chmod a+x .husky/commit-msg
+```
