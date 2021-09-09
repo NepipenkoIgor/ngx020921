@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
 	styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-	public title = 'project-ngx-classwork-starter';
+	public title: string = 'project-ngx-classwork-starter';
 }
