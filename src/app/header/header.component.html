@@ -1,0 +1,14 @@
+<mat-toolbar color="primary" fxLayout='row' fxLayoutAlign='space-between center' >
+  <div>
+    <button mat-icon-button (click)='onMenuButtonClick($event)'>
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>{{title}}</span>
+  </div>
+
+  <div>
+    <button mat-icon-button >
+      <mat-icon matBadge='0' matBadgeColor='warn'>shopping_cart</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>
