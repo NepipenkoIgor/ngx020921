@@ -1,0 +1,20 @@
+<mat-sidenav-container>
+  <mat-sidenav mode='over' #drawer >
+<!--    <ng-content select='.menu'></ng-content>-->
+    <mat-list class=menu>
+      <mat-list-item>
+        <mat-icon matListIcon>dashboard</mat-icon>
+        Products
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon matListIcon>logout</mat-icon>
+        Log Out
+      </mat-list-item>
+    </mat-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div #contentSection></div>
+<!--    <ng-content></ng-content>-->
+<!--      <button (click)='drawer.toggle()'>Click</button>-->
+  </mat-sidenav-content>
+</mat-sidenav-container>

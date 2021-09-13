@@ -1,13 +1,7 @@
-<ngx-classwork-header [title]='text' (menuToggle)='toggleMenu($event)'></ngx-classwork-header>
-<!--<div>-->
-<!--  {{'My salary ' + salary + '$'}}-->
-<!--</div>-->
-<!--<div>-->
-<!--  {{user.info?.male}}-->
-<!--</div>-->
+<ngx-classwork-header [title]='text' [sideNav]='sideNav'></ngx-classwork-header>
+<ngx-classwork-sidenav (setSideNav)='onSetSideNav($event)'>
+  <ng-template #content>
+    <ngx-classwork-search (searchTermChange)='setText($event)'></ngx-classwork-search>
+  </ng-template>
+</ngx-classwork-sidenav>
 
-<!--<input type='text' #inputSrc>-->
-
-<!--<img [src]='imgSrc' [style.width.%]='width' (click)='onImgClick(imgSrc, $event, inputSrc.value)' >-->
-
-<!--<div [innerHTML]='tag'></div>-->

@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-// import { DomSanitizer } from '@angular/platform-browser';
+import { MatSidenav } from '@angular/material/sidenav';
 
-// interface IUser {
-// 	name: string;
-// 	info: {
-// 		male: boolean;
-// 	};
+// class Person {
+// 	public date = Date.now();
+//
+// 	public constructor(public name: string) {}
 // }
 
 @Component({
@@ -16,30 +15,48 @@ import { Component } from '@angular/core';
 export class AppComponent {
 	public text: string = 'Ngx020921';
 
-	// public user: IUser = {} as IUser;
+	public searchTerm!: string;
 
-	// private _salary: number = 3000;
-	//
-	// public width = 50;
-	//
-	// public tag = this.domSanitizer.bypassSecurityTrustHtml('<span style="color:red">JS</span>');
-	//
-	// public constructor(private domSanitizer: DomSanitizer) {}
-	//
-	// public get salary(): number {
-	// 	return Math.round(this._salary * 1.2);
+	public sideNav!: MatSidenav;
+	// public me = new Person('Ihor');
+
+	// public constructor(private appRef: ApplicationRef) {
+	// 	setTimeout(() => {
+	// 		console.log('Need CHECK!!!');
+	// 		this.appRef.tick();
+	// 	}, 7000);
 	// }
-	//
-	// public imgSrc =
-	// 	'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/1200px-Angular_full_color_logo.svg.png';
-	//
-	// public onImgClick(src: string, event: MouseEvent, inputSrc: string) {
-	// 	console.log(src);
-	// 	console.log(event);
-	// 	console.log(inputSrc);
-	// }v
+
+	// public ngOnInit(): void {
+	// 	setTimeout(() => {
+	// 		console.log('7000');
+	// 		this.me.name = 'Eugene';
+	// 	}, 7000);
+	// }
+	// public constructor() {} // private cdr: ChangeDetectorRef
 
 	public toggleMenu(event: any) {
 		console.log('menu !!!', event);
+	}
+
+	public setText(_event: string) {
+		// console.log('event', event);
+		// this.searchTerm = event;
+	}
+
+	public onSetSideNav(sideNav: MatSidenav): void {
+		this.sideNav = sideNav;
+		console.log(this.sideNav);
+		// setTimeout(() => {
+		// 	this.sideNav = sideNav;
+		// 	console.log(this.sideNav);
+		// });
+		// Promise.resolve().then(() => {
+		// 	this.sideNav = sideNav;
+		// 	console.log(this.sideNav);
+		// });
+		// this.sideNav = sideNav;
+		// console.log(this.sideNav);
+		// this.cdr.detectChanges();
 	}
 }
