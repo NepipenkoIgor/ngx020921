@@ -1,5 +1,4 @@
 import {
-	AfterViewInit,
 	Component,
 	ContentChild,
 	EventEmitter,
@@ -16,14 +15,14 @@ import { MatSidenav } from '@angular/material/sidenav';
 	templateUrl: './sidenav.component.html',
 	styleUrls: ['./sidenav.component.css'],
 })
-export class SidenavComponent implements AfterViewInit, OnInit {
+export class SidenavComponent implements OnInit {
 	@ViewChild('drawer', { static: true })
 	public sidenav!: MatSidenav;
 
-	@ViewChild('contentSection', { static: false, read: ViewContainerRef })
+	@ViewChild('contentSection', { static: true, read: ViewContainerRef })
 	public contentArea!: ViewContainerRef;
 
-	@ContentChild('content')
+	@ContentChild('content', { static: true })
 	public content!: TemplateRef<any>;
 
 	@Output()
@@ -31,9 +30,10 @@ export class SidenavComponent implements AfterViewInit, OnInit {
 
 	public ngOnInit() {
 		this.setSideNav.emit(this.sidenav);
-	}
-
-	public ngAfterViewInit(): void {
 		this.contentArea.createEmbeddedView(this.content);
 	}
+
+	// public ngAfterViewInit(): void {
+	//
+	// }
 }

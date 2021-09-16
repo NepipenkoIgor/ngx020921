@@ -1,62 +1,67 @@
 import { Component } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
-
-// class Person {
-// 	public date = Date.now();
-//
-// 	public constructor(public name: string) {}
-// }
+import { IProduct, products$ } from './data';
+import { Observable } from 'rxjs';
+import { UnSubscribeMixin, UnSubscriber } from './utils/unsubscriber';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 
 @Component({
 	selector: 'ngx-classwork-root',
 	templateUrl: './app.component.html',
 	styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent extends UnSubscribeMixin(UnSubscriber) {
 	public text: string = 'Ngx020921';
 
 	public searchTerm!: string;
 
-	public sideNav!: MatSidenav;
-	// public me = new Person('Ihor');
+	public isFavorite: boolean = false;
 
-	// public constructor(private appRef: ApplicationRef) {
-	// 	setTimeout(() => {
-	// 		console.log('Need CHECK!!!');
-	// 		this.appRef.tick();
-	// 	}, 7000);
-	// }
+	public products$: Observable<IProduct[]> = products$;
+
+	//public products: IProduct[] = [];
+
+	public sideNav!: MatSidenav;
 
 	// public ngOnInit(): void {
-	// 	setTimeout(() => {
-	// 		console.log('7000');
-	// 		this.me.name = 'Eugene';
-	// 	}, 7000);
+	// 	// this.products$.pipe(takeUntil(this.unSubscribe$$)).subscribe(
+	// 	// 	(v) => {
+	// 	// 		console.log(v);
+	// 	// 		this.products = v;
+	// 	// 	},
+	// 	// 	() => {},
+	// 	// 	() => {
+	// 	// 		console.log('COMPLETED');
+	// 	// 	},
+	// 	// );
 	// }
-	// public constructor() {} // private cdr: ChangeDetectorRef
+
+	public override ngOnDestroy() {
+		//do something
+		super.ngOnDestroy();
+	}
 
 	public toggleMenu(event: any) {
 		console.log('menu !!!', event);
 	}
 
-	public setText(_event: string) {
-		// console.log('event', event);
-		// this.searchTerm = event;
+	public setText(text: string) {
+		this.searchTerm = text;
 	}
 
 	public onSetSideNav(sideNav: MatSidenav): void {
 		this.sideNav = sideNav;
-		console.log(this.sideNav);
-		// setTimeout(() => {
-		// 	this.sideNav = sideNav;
-		// 	console.log(this.sideNav);
-		// });
-		// Promise.resolve().then(() => {
-		// 	this.sideNav = sideNav;
-		// 	console.log(this.sideNav);
-		// });
-		// this.sideNav = sideNav;
-		// console.log(this.sideNav);
-		// this.cdr.detectChanges();
 	}
+
+	public toggleIsFavorite(e: MatCheckboxChange): void {
+		this.isFavorite = e.checked;
+	}
+
+	// public filteredProducts(products: IProduct[], text: string) {
+	// 	console.log('CALC');
+	// 	if (!text) {
+	// 		return products;
+	// 	}
+	// 	return products.filter((p: IProduct) => `${p.title} ${p.price}`.toLowerCase().includes(text));
+	// }
 }

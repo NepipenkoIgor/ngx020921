@@ -8,6 +8,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 const externalModules = [
 	MatToolbarModule,
@@ -19,6 +22,9 @@ const externalModules = [
 	MatInputModule,
 	MatSidenavModule,
 	MatListModule,
+	MatCardModule,
+	MatProgressSpinnerModule,
+	MatCheckboxModule,
 ];
 const internalModules: Type<any>[] = [];
 

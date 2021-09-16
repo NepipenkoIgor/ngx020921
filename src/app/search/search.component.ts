@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
 	selector: 'ngx-classwork-search',
@@ -6,8 +6,8 @@ import { Component, EventEmitter, Output } from '@angular/core';
 	styleUrls: ['./search.component.css'],
 })
 export class SearchComponent {
-	// @Input()
-	// public searchTerm: string = '';
+	@Input()
+	public searchTerm: string = '';
 
 	@Output()
 	// eslint-disable-next-line @angular-eslint/no-output-on-prefix
