@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IProduct } from '../data';
+import { IProduct } from '../products.service';
 
 @Component({
 	selector: 'ngx-classwork-product-card',
@@ -12,4 +12,8 @@ export class ProductCardComponent {
 
 	@Input()
 	public isOdd!: boolean;
+
+	// public constructor(@Optional() @Host() private productsService: ProductsService) {
+	// 	console.log(this.productsService?.timestamp);
+	// }
 }
