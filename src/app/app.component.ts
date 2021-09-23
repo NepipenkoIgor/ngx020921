@@ -19,34 +19,10 @@ export class AppComponent extends UnSubscribeMixin(UnSubscriber) {
 
 	public products$: Observable<IProduct[]> = this.productsService.getProducts();
 
-	//public products: IProduct[] = [];
-
 	public sideNav!: MatSidenav;
 
-	// public constructor(@Inject(ProductsService) private productsService: any) {
 	public constructor(private productsService: ProductsService) {
 		super();
-	}
-
-	public ngOnInit(): void {
-		this.productsService.getProducts().subscribe(
-			(v: any) => {
-				console.log(v);
-			},
-			() => {},
-			() => {
-				console.log('COMPLETED');
-			},
-		);
-	}
-
-	public override ngOnDestroy() {
-		//do something
-		super.ngOnDestroy();
-	}
-
-	public toggleMenu(event: any) {
-		console.log('menu !!!', event);
 	}
 
 	public setText(text: string) {
@@ -60,12 +36,4 @@ export class AppComponent extends UnSubscribeMixin(UnSubscriber) {
 	public toggleIsFavorite(e: MatCheckboxChange): void {
 		this.isFavorite = e.checked;
 	}
-
-	// public filteredProducts(products: IProduct[], text: string) {
-	// 	console.log('CALC');
-	// 	if (!text) {
-	// 		return products;
-	// 	}
-	// 	return products.filter((p: IProduct) => `${p.title} ${p.price}`.toLowerCase().includes(text));
-	// }
 }

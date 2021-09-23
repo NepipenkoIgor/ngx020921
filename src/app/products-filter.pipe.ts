@@ -7,7 +7,6 @@ import { IProduct } from './products.service';
 })
 export class ProductsFilterPipe implements PipeTransform {
 	public transform(products: IProduct[], text: string, isFavorite: boolean = false) {
-		console.log('CALC');
 		let result = products;
 		if (isFavorite) {
 			result = result.filter((p: IProduct) => p.isFavorite);

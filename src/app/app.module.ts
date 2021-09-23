@@ -17,6 +17,11 @@ import { ProductsService } from './products.service';
 import { environment } from '../environments/environment';
 import { BASE_URL } from './config';
 import { AuthInterceptor } from './auth.interceptor';
+import { ModalModule } from './modal/modal.module';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
+import { BackofficeComponent } from './backoffice/backoffice.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
 	declarations: [
@@ -29,6 +34,9 @@ import { AuthInterceptor } from './auth.interceptor';
 		ExchangeRatesComponent,
 		ExchangeRatesDirective,
 		HiddenDirective,
+		LoginComponent,
+		SignupComponent,
+		BackofficeComponent,
 	],
 	providers: [
 		{
@@ -61,7 +69,14 @@ import { AuthInterceptor } from './auth.interceptor';
 			multi: true,
 		},
 	],
-	imports: [BrowserModule, BrowserAnimationsModule, SharedModule, HttpClientModule],
+	imports: [
+		BrowserModule,
+		BrowserAnimationsModule,
+		SharedModule,
+		HttpClientModule,
+		ModalModule.forRoot(),
+		AppRoutingModule,
+	],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}
