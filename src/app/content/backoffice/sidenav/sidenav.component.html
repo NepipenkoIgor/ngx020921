@@ -2,13 +2,13 @@
   <mat-sidenav mode='over' #drawer >
 <!--    <ng-content select='.menu'></ng-content>-->
     <mat-list class=menu>
-      <mat-list-item>
+      <mat-list-item [routerLink]="['/backoffice']" >
         <mat-icon matListIcon>dashboard</mat-icon>
         Products
       </mat-list-item>
-      <mat-list-item>
-        <mat-icon matListIcon>logout</mat-icon>
-        Log Out
+      <mat-list-item [routerLink]="['/backoffice/profile']">
+        <mat-icon matListIcon>person</mat-icon>
+       Profile
       </mat-list-item>
     </mat-list>
   </mat-sidenav>

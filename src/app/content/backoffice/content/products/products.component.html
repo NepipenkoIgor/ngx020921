@@ -1,0 +1,16 @@
+<div fxLayout='column'>
+  <h3>{{title$ | async}}</h3>
+  <ngx-classwork-search (searchTermChange)='setText($event)'></ngx-classwork-search>
+  <mat-checkbox (change)='toggleIsFavorite($event)'>Show only favorites</mat-checkbox>
+</div>
+<div fxLayout='row wrap' fxLayoutGap='16px grid' *ngIf='products$ | async as products; else loading'>
+  <div fxFlex='25%' fxFlex.xs='100%' fxFlex.sm='33%'
+       *ngFor='let product of products | productsFilter: searchTerm: isFavorite; odd as isOdd'>
+    <ngx-classwork-product-card [product]='product' [isOdd]='isOdd'></ngx-classwork-product-card>
+  </div>
+</div>
+<ng-template #loading>
+  <div class='loading-container'>
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>

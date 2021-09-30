@@ -1,8 +1,8 @@
 import { Component, Input, NgModule, OnDestroy } from '@angular/core';
-import { IProduct } from '../products.service';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
+import { IProduct } from '../../products.service';
 
 @Component({
 	selector: 'ngx-classwork-product-confirmation-modal',

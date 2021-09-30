@@ -1,6 +1,6 @@
 import { Component, Injector, Input } from '@angular/core';
+import { ModalService } from '../../../../../modal/modal.service';
 import { IProduct } from '../products.service';
-import { ModalService } from '../modal/modal.service';
 
 @Component({
 	selector: 'ngx-classwork-product-card',
@@ -21,7 +21,7 @@ export class ProductCardComponent {
 
 	public async addToCart() {
 		const m: any = await import(
-			'../product-confirmation-modal/product-confirmation-modal.component'
+			'./product-confirmation-modal/product-confirmation-modal.component'
 		);
 		console.log(m.ProductConfirmationModalComponent);
 		this.modalService.open({

@@ -1,8 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { SignupComponent } from './signup/signup.component';
-import { BackofficeComponent } from './backoffice/backoffice.component';
 
 export const routes: Routes = [
 	{
@@ -12,15 +9,16 @@ export const routes: Routes = [
 	},
 	{
 		path: 'login',
-		component: LoginComponent,
+		loadChildren: () => import('./content/login/login.module').then((m) => m.LoginModule),
 	},
 	{
 		path: 'signup',
-		component: SignupComponent,
+		loadChildren: () => import('./content/signup/signup.module').then((m) => m.SignupModule),
 	},
 	{
 		path: 'backoffice',
-		component: BackofficeComponent,
+		loadChildren: () =>
+			import('./content/backoffice/backoffice.module').then((m) => m.BackofficeModule),
 	},
 	{
 		path: '**',

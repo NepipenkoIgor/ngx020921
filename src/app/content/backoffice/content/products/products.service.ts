@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { catchError } from 'rxjs/operators';
 
 export interface IProduct {
+	_id: string;
 	title: string;
 	img: string;
 	price: number;
