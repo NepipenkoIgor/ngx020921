@@ -9,10 +9,12 @@ import { BASE_URL } from './config';
 import { AuthInterceptor } from './auth.interceptor';
 import { ModalModule } from './modal/modal.module';
 import { AppRoutingModule } from './app-routing.module';
+import { AuthGuard } from './shared/auth/auth.guard';
 
 @NgModule({
 	declarations: [AppComponent],
 	providers: [
+		AuthGuard,
 		{
 			provide: BASE_URL,
 			useValue: environment.baseUrl,

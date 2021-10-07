@@ -1,2 +1,29 @@
-<p>signup works!</p>
-<div (click)='goToLogin()'>Go to LogIn</div>
+<div class='signup-container' [formGroup]='signUpForm'>
+  <mat-card>
+    <div>
+      <p>Log In to Continue</p>
+      <mat-form-field>
+        <input matInput placeholder='Username' type='text' formControlName='username'>
+        <mat-error
+          *ngIf='$any(signUpForm.get("username")?.errors?.["withOutSpecial"]) as withOutSpecial'>{{withOutSpecial}}</mat-error>
+      </mat-form-field>
+      <div formGroupName='password'>
+        <mat-form-field>
+          <input matInput placeholder='Password' type='password'
+                 formControlName='pass'
+          >
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder='Confirm password' type='password'
+                 formControlName='cpass'
+          >
+        </mat-form-field>
+      </div>
+      <button mat-raised-button color='primary' [disabled]='signUpForm.invalid || signUpForm.pending'
+              (click)='signup()'>Sign Up
+      </button>
+      <a mat-button (click)='goToLogin()'>Go To Log In</a>
+    </div>
+  </mat-card>
+</div>
+

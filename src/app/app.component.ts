@@ -11,8 +11,8 @@ export class AppComponent implements OnInit {
 
 	public ngOnInit() {
 		console.log(this.router.config);
-		this.router.events.subscribe((e) => {
-			console.log(e);
+		this.router.events.subscribe((_e) => {
+			//	console.log(e);
 		});
 	}
 }

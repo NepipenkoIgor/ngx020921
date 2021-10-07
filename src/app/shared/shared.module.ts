@@ -12,6 +12,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CommonModule } from '@angular/common';
+import { WithoutSpecialCharactersDirective } from './validators/without-special-characters.directive';
+import { ValidatorsService } from './validators/validators.service';
 
 const externalModules = [
 	CommonModule,
@@ -31,6 +33,8 @@ const externalModules = [
 const internalModules: Type<any>[] = [];
 
 @NgModule({
-	exports: [...internalModules, ...externalModules],
+	exports: [...internalModules, ...externalModules, WithoutSpecialCharactersDirective],
+	declarations: [WithoutSpecialCharactersDirective],
+	providers: [ValidatorsService],
 })
 export class SharedModule {}

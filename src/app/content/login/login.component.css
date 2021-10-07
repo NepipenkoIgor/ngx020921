@@ -1,0 +1,12 @@
+.login-container {
+  padding: 60px 1rem;
+}
+
+.login-container mat-card {
+  max-width: 400px;
+  margin: 2em auto;
+  text-align: center;
+}
+.login-container mat-form-field {
+  width: 100%;
+}
