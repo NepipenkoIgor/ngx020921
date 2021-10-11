@@ -1,4 +1,4 @@
-import { NgModule, Type } from '@angular/core';
+import { ModuleWithProviders, NgModule, Type } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -14,6 +14,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CommonModule } from '@angular/common';
 import { WithoutSpecialCharactersDirective } from './validators/without-special-characters.directive';
 import { ValidatorsService } from './validators/validators.service';
+import { AuthService } from './auth/auth.service';
 
 const externalModules = [
 	CommonModule,
@@ -37,4 +38,11 @@ const internalModules: Type<any>[] = [];
 	declarations: [WithoutSpecialCharactersDirective],
 	providers: [ValidatorsService],
 })
-export class SharedModule {}
+export class SharedModule {
+	public static forRoot(): ModuleWithProviders<SharedModule> {
+		return {
+			ngModule: SharedModule,
+			providers: [AuthService],
+		};
+	}
+}

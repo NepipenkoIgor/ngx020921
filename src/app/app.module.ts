@@ -3,13 +3,19 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
-import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { BASE_URL } from './config';
-import { AuthInterceptor } from './auth.interceptor';
+import { AuthInterceptor } from './shared/auth/auth.interceptor';
 import { ModalModule } from './modal/modal.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthGuard } from './shared/auth/auth.guard';
+import { Store, StoreModule } from '@ngrx/store';
+import { IAppState, reducers } from './store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
+import { checkJWT } from './store/actions/auth.actions';
+import { effects } from './store/effects';
 
 @NgModule({
 	declarations: [AppComponent],
@@ -32,22 +38,29 @@ import { AuthGuard } from './shared/auth/auth.guard';
 		},
 		{
 			provide: APP_INITIALIZER,
-			useFactory: (baseUrl: string, httpClient: any) => {
+			useFactory: (store: Store<IAppState>) => {
 				return () => {
-					console.log('@@@', baseUrl, httpClient);
+					store.dispatch(checkJWT());
 				};
 			},
-			deps: [BASE_URL, HttpClient],
+			deps: [Store],
 			multi: true,
 		},
 	],
 	imports: [
 		BrowserModule,
 		BrowserAnimationsModule,
-		SharedModule,
+		SharedModule.forRoot(),
 		HttpClientModule,
 		ModalModule.forRoot(),
 		AppRoutingModule,
+		StoreModule.forRoot(reducers),
+		EffectsModule.forRoot(effects),
+		StoreDevtoolsModule.instrument({
+			maxAge: 25, // Retains last 25 states
+			logOnly: environment.production, // Restrict extension to log-only mode
+			autoPause: true, // Pauses recording actions and state changes when the extension window is not open
+		}),
 	],
 	bootstrap: [AppComponent],
 })

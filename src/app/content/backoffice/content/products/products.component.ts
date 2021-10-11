@@ -2,9 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { UnSubscriber } from '../../../../utils/unsubscriber';
-import { IProduct, ProductsService } from './products.service';
+import { IProduct } from './products.service';
 import { ActivatedRoute } from '@angular/router';
 import { pluck } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
+import { IAppState } from '../../../../store';
+import { IProductsState } from './store/reducers/products.reducer';
+import { getProductsPending } from './store/actions/products.actions';
 
 @Component({
 	selector: 'ngx-classwork-products',
@@ -16,19 +20,19 @@ export class ProductsComponent extends UnSubscriber implements OnInit {
 
 	public isFavorite: boolean = false;
 
-	public products$: Observable<IProduct[]> = this.productsService.getProducts();
+	public products$: Observable<IProduct[]> = this.store.select('products');
 
 	public title$ = this.activatedRoute.data.pipe(pluck('title'));
 
 	public constructor(
-		private productsService: ProductsService,
 		private activatedRoute: ActivatedRoute,
+		private store: Store<IAppState & IProductsState>,
 	) {
 		super();
 	}
 
 	public ngOnInit() {
-		console.log(this.activatedRoute.snapshot);
+		this.store.dispatch(getProductsPending());
 	}
 
 	public setText(text: string) {

@@ -10,3 +10,6 @@
 .signup-container mat-form-field {
   width: 100%;
 }
+mat-icon {
+  cursor: pointer;
+}

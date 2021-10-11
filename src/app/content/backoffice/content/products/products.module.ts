@@ -8,6 +8,10 @@ import { SharedModule } from '../../../../shared/shared.module';
 import { ProductsRoutingModule } from './products-routing.module';
 import { OneProductComponent } from './one-product/one-product.component';
 import { OneProductResolver } from './one-product/one-product.resolver';
+import { StoreModule } from '@ngrx/store';
+import { productReducer } from './store/reducers/products.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { ProductsEffect } from './store/effects/products.effect';
 
 @NgModule({
 	declarations: [
@@ -17,7 +21,12 @@ import { OneProductResolver } from './one-product/one-product.resolver';
 		ProductsFilterPipe,
 		OneProductComponent,
 	],
-	imports: [SharedModule, ProductsRoutingModule],
+	imports: [
+		SharedModule,
+		ProductsRoutingModule,
+		StoreModule.forFeature('products', productReducer),
+		EffectsModule.forFeature([ProductsEffect]),
+	],
 	providers: [ProductsService, OneProductResolver],
 })
 export class ProductsModule {}

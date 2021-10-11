@@ -7,6 +7,26 @@
         <mat-error
           *ngIf='$any(signUpForm.get("username")?.errors?.["withOutSpecial"]) as withOutSpecial'>{{withOutSpecial}}</mat-error>
       </mat-form-field>
+
+      <div fxLayout='column' formGroupName='emails'>
+        <div fxLayout='row' *ngFor='let c of getControls(signUpForm, "emails") as controls; index as i; first as f'
+             fxFlex='90'>
+          <mat-form-field>
+            <input matInput placeholder='Email' type='email'
+                   [formControlName]='i'
+            >
+          </mat-form-field>
+          <div fxFlex='10' fxLayout='row'>
+            <mat-icon *ngIf='f' (click)='addEmail()'>add</mat-icon>
+            <mat-icon *ngIf='controls.length>1' (click)='removeEmail(i)'>delete</mat-icon>
+          </div>
+        </div>
+      </div>
+
+      <div fxLayout='row' fxLayoutGap='5px'>
+        <span>Male</span>
+        <ngx-classwork-switcher formControlName='male'></ngx-classwork-switcher>
+      </div>
       <div formGroupName='password'>
         <mat-form-field>
           <input matInput placeholder='Password' type='password'
