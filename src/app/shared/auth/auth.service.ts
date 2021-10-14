@@ -11,6 +11,10 @@ export class AuthService {
 		return this.http.post<IUser>('/auth/signin', { ...user });
 	}
 
+	public signUp(user: any): Observable<IUser> {
+		return this.http.post<IUser>('/auth/signup', { ...user });
+	}
+
 	public checkUser(): Observable<IUser> {
 		return this.http.get<IUser>('/auth/checkuser');
 	}
@@ -25,5 +29,9 @@ export class AuthService {
 
 	public getTokenFromLocalStorage() {
 		return of(localStorage.getItem('accessToken'));
+	}
+
+	public removeTokenFromLocalStorage() {
+		return of(localStorage.removeItem('accessToken'));
 	}
 }

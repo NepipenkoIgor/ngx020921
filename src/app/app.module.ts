@@ -11,7 +11,7 @@ import { ModalModule } from './modal/modal.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthGuard } from './shared/auth/auth.guard';
 import { Store, StoreModule } from '@ngrx/store';
-import { IAppState, reducers } from './store';
+import { IAppState, metaReducers, reducers } from './store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { checkJWT } from './store/actions/auth.actions';
@@ -54,7 +54,7 @@ import { effects } from './store/effects';
 		HttpClientModule,
 		ModalModule.forRoot(),
 		AppRoutingModule,
-		StoreModule.forRoot(reducers),
+		StoreModule.forRoot(reducers, { metaReducers }),
 		EffectsModule.forRoot(effects),
 		StoreDevtoolsModule.instrument({
 			maxAge: 25, // Retains last 25 states

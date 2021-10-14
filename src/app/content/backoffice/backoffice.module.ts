@@ -7,6 +7,10 @@ import { ExchangeRatesComponent } from './header/exchange-rates/exchange-rates.c
 import { ExchangeRatesDirective } from './header/exchange-rates/exchange-rates.directive';
 import { HiddenDirective } from './header/exchange-rates/hidden.directive';
 import { BackofficeRoutingModule } from './backoffice-routing.module';
+import { CartComponent } from './header/cart/cart.component';
+import { CartProductComponent } from './header/cart/cart-product/cart-product.component';
+import { StoreModule } from '@ngrx/store';
+import { cartReducer } from './store/reducers/cart.reducer';
 
 @NgModule({
 	declarations: [
@@ -16,7 +20,9 @@ import { BackofficeRoutingModule } from './backoffice-routing.module';
 		ExchangeRatesComponent,
 		ExchangeRatesDirective,
 		HiddenDirective,
+		CartComponent,
+		CartProductComponent,
 	],
-	imports: [SharedModule, BackofficeRoutingModule],
+	imports: [SharedModule, BackofficeRoutingModule, StoreModule.forFeature('cart', cartReducer)],
 })
 export class BackofficeModule {}

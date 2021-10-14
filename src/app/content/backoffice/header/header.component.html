@@ -1,16 +1,19 @@
-<mat-toolbar color="primary" fxLayout='row' fxLayoutAlign='space-between center' >
+<mat-toolbar color='primary' fxLayout='row' fxLayoutAlign='space-between center'>
   <div>
     <button mat-icon-button (click)='onMenuButtonClick()'>
       <mat-icon>menu</mat-icon>
     </button>
     <span>{{title}}</span>
-<!--    <div>{{person.name}} - {{person.date}}</div>-->
+    <!--    <div>{{person.name}} - {{person.date}}</div>-->
   </div>
 
   <div fxLayout='row'>
     <ngx-classwork-exchange-rates></ngx-classwork-exchange-rates>
-    <button mat-icon-button >
-      <mat-icon matBadge='0' matBadgeColor='warn'>shopping_cart</mat-icon>
-    </button>
+    <div class='cart'>
+      <button mat-icon-button (click)='isOpen = !isOpen'>
+        <mat-icon [matBadge]='cartProductCount$ | async' matBadgeColor='warn'>shopping_cart</mat-icon>
+      </button>
+      <ngx-classwork-cart *ngIf='isOpen'></ngx-classwork-cart>
+    </div>
   </div>
 </mat-toolbar>

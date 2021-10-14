@@ -1,0 +1,9 @@
+<div class='cart'>
+  <ng-container *ngFor='let product of products$ | async; trackBy: trackByFn'>
+    <ngx-classwork-cart-product
+      [product]='product'
+      (removeProduct)='remove($event)'
+      (changeProductCount)='changeCount($event)'
+    ></ngx-classwork-cart-product>
+  </ng-container>
+</div>

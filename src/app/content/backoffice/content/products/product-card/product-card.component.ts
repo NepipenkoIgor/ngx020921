@@ -1,6 +1,10 @@
 import { Component, Injector, Input } from '@angular/core';
 import { ModalService } from '../../../../../modal/modal.service';
 import { IProduct } from '../products.service';
+import { Store } from '@ngrx/store';
+import { IAppState } from '../../../../../store';
+import { ICartState } from '../../../store/reducers/cart.reducer';
+import { addProductToCart } from '../../../store/actions/cart.actions';
 
 @Component({
 	selector: 'ngx-classwork-product-card',
@@ -17,6 +21,7 @@ export class ProductCardComponent {
 	public constructor(
 		private readonly modalService: ModalService,
 		private readonly injector: Injector,
+		private readonly store: Store<IAppState & ICartState & IProduct>,
 	) {}
 
 	public async addToCart() {
@@ -31,6 +36,7 @@ export class ProductCardComponent {
 				injector: this.injector,
 				add: () => {
 					console.log('Add');
+					this.store.dispatch(addProductToCart({ product: { ...this.product } }));
 					this.modalService.close();
 				},
 				cancel: () => {
