@@ -1,6 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { IProduct } from './products.service';
-
 @Pipe({
 	name: 'productsFilter',
 	pure: false,
@@ -14,6 +13,8 @@ export class ProductsFilterPipe implements PipeTransform {
 		if (!text) {
 			return result;
 		}
-		return result.filter((p: IProduct) => `${p.title} ${p.price}`.toLowerCase().includes(text));
+		return result.filter((p: IProduct) =>
+			`${p.title} ${p.price}`.toLowerCase().includes(text.toLowerCase()),
+		);
 	}
 }
